@@ -1,6 +1,7 @@
 # gs-2023-1
-edge computing &amp; computing systems
-Integrantes
+Edge Computing &amp; Computing Systems
+
+Integrantes:
 João Pedro Borsato da Cruz - 550294
 Júlia Masson - 98134
 Julia Ortiz de Jesus - 550204
