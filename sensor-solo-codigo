@@ -1,0 +1,54 @@
+// potenciometro simula um "botão" de desligar
+// 100% = ligado
+
+#include <LiquidCrystal.h>
+
+// lcd
+const int rs = 3, en = 4, d4 = A2, d5 = A3, d6 = A4, d7 = A5;
+LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+// vars umidade
+int umidade;
+// vars temp
+int RawValue = 0;
+double Voltagem = 0;
+double tempC = 0;
+
+void setup() {
+  // iniciando lcd
+  Serial.begin(9600);
+  lcd.begin(16, 2);
+  lcd.print("Iniciando...");
+  delay(2000);
+  lcd.clear();
+}
+
+  
+void loop() {
+  
+  // umidade
+  umidade = analogRead(A0);
+  int porcentagem = map(umidade, 0, 1023, 0, 100);
+  //lcd
+  lcd.setCursor(0, 0);
+  lcd.print("--- AGROSEED ---");
+  lcd.setCursor(0, 2);
+  lcd.print("Umidade = ");
+  lcd.print(porcentagem);
+  lcd.print("%");
+  delay(5000);
+  lcd.clear();
+  
+  //temperatura
+  RawValue = analogRead(A1);
+  Voltagem = (RawValue / 1023.0) * 5000; // convertendo para millivolts
+  tempC = (Voltagem-500) * 0.1; // subtraindo 500 (offset)
+  //lcd
+  lcd.setCursor(0, 0);
+  lcd.print("--- AGROSEED ---");
+  lcd.setCursor(0, 2);
+  lcd.print("Temp. = ");
+  lcd.print(tempC);
+  lcd.print("C");
+  delay(5000);
+  lcd.clear();
+}
